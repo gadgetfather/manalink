@@ -1,5 +1,12 @@
+import { LoginPage, SignupPage } from "./pages";
+
 function App() {
-  return <div>hello</div>;
+  return (
+    <div>
+      {/* <LoginPage /> */}
+      <SignupPage />
+    </div>
+  );
 }
 
 export default App;
