@@ -17,9 +17,7 @@
       rgba(0, 0, 0, 0.5)
     ),
     url("https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
-  /* object-fit: cover;
-  object-position: center; */
-  /* background-repeat: no-repeat; */
+
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
