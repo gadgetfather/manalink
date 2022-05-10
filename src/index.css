@@ -25,3 +25,10 @@
   background-size: cover;
   background-position: center;
 }
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+.Toastify__toast-body {
+  white-space: pre-line;
+}
