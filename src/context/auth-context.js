@@ -1,13 +1,17 @@
 import axios from "axios";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({ token: "", user: "" });
+  const [userInfo, setUserInfo] = useState({
+    token: localStorage.getItem("manalink.token") || "",
+    user: JSON.parse(localStorage.getItem("manalink.user")) || "",
+  });
   const navigate = useNavigate();
+
   const login = async (loginData) => {
     try {
       const response = await axios.post("/api/auth/login", {
@@ -17,8 +21,8 @@ const AuthProvider = ({ children }) => {
       if (response.status === 200) {
         setUserInfo({
           ...userInfo,
-          token: response.data.token,
-          user: response.data,
+          token: response.data.encodedToken,
+          user: response.data.foundUser,
         });
         toast.success("Login sucessful!", {
           position: "top-center",
@@ -29,6 +33,12 @@ const AuthProvider = ({ children }) => {
           draggable: true,
           progress: undefined,
         });
+
+        localStorage.setItem("manalink.token", response.data.encodedToken);
+        localStorage.setItem(
+          "manalink.user",
+          JSON.stringify(response.data.foundUser)
+        );
         setTimeout(() => navigate("/home"), 2000);
       }
     } catch (error) {
@@ -74,7 +84,7 @@ const AuthProvider = ({ children }) => {
     }
   };
   return (
-    <AuthContext.Provider value={{ login, signup }}>
+    <AuthContext.Provider value={{ login, signup, userInfo, setUserInfo }}>
       {children}
     </AuthContext.Provider>
   );
