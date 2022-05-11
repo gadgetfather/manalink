@@ -24,7 +24,7 @@ export function Navbar() {
     });
   };
   return (
-    <nav className="h-12 bg-red-400 p-2 flex justify-between">
+    <nav className="h-12 bg-red-400 p-2 flex justify-between sticky top-0">
       <div>
         <Link className="text-lg font-semibold" to={"/home"}>
           Manalink
