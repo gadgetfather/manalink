@@ -37,7 +37,7 @@ export function Navbar() {
           src="https://picsum.photos/200"
           alt=""
         />
-        <span onClick={handleLogout} class="material-symbols-outlined">
+        <span onClick={handleLogout} className="material-symbols-outlined">
           logout
         </span>
       </div>
