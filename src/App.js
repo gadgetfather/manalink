@@ -11,8 +11,6 @@ function App() {
   useEffect(() => {
     if (token) {
       navigate("/home");
-    } else {
-      navigate("/");
     }
   }, [token]);
   return (
