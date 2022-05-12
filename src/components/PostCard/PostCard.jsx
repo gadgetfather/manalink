@@ -19,10 +19,14 @@ export function PostCard() {
         </p>
       </div>
       <div className="pt-2 flex justify-between">
-        <span class="material-symbols-outlined">favorite</span>
-        <span class="material-symbols-outlined">chat</span>
-        <span class="material-symbols-outlined">share</span>
-        <span class="material-symbols-outlined">bookmark</span>
+        <span className="cursor-pointer material-symbols-outlined">
+          favorite
+        </span>
+        <span className="cursor-pointer material-symbols-outlined">chat</span>
+        <span className="cursor-pointer material-symbols-outlined">share</span>
+        <span className="cursor-pointer material-symbols-outlined">
+          bookmark
+        </span>
       </div>
     </div>
   );
