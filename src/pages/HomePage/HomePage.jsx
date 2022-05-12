@@ -1,34 +1,43 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { ToastContainer, toast } from "react-toastify";
+
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  MobileMenu,
+  Navbar,
+  PersonCard,
+  PostCard,
+  Sidebar,
+} from "../../components";
 
 export function HomePage() {
-  const { setUserInfo } = useAuth();
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    setTimeout(() => {
-      localStorage.removeItem("manalink.user");
-      localStorage.removeItem("manalink.token");
-      setUserInfo({ token: "", user: "" });
-    }, 2000);
-
-    toast.error("You have been logged out", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
   return (
-    <div>
-      <h1>Homepage</h1>
+    <div className="lg:w-[80%] mx-auto flex flex-col">
+      <Navbar />
       <ToastContainer />
-      <button onClick={handleLogout}>Logout</button>
+
+      <div className="min-h-screen grid grid-cols-1   lg:grid-layout">
+        <Sidebar />
+        <div>
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+        </div>
+        <div className="border flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r ">
+          <PersonCard />
+          <PersonCard />
+          <PersonCard />
+        </div>
+      </div>
+      <MobileMenu />
     </div>
   );
 }
