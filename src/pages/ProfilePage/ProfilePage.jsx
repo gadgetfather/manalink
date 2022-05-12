@@ -1,13 +1,7 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
-import {
-  MobileMenu,
-  Navbar,
-  PersonCard,
-  PostCard,
-  Sidebar,
-} from "../../components";
+import { MobileMenu, Navbar, PostCard, Sidebar } from "../../components";
 
 export function ProfilePage() {
   const [showHover, setShowHover] = useState(false);
