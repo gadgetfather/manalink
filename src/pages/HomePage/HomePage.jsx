@@ -12,7 +12,7 @@ import {
 
 export function HomePage() {
   return (
-    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[65%] mx-auto flex flex-col">
+    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col">
       <Navbar />
       <ToastContainer />
 
@@ -31,7 +31,7 @@ export function HomePage() {
           <PostCard />
           <PostCard />
         </div>
-        <div className="border flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r ">
+        <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3">
           <PersonCard />
           <PersonCard />
           <PersonCard />
