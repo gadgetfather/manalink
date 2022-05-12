@@ -12,7 +12,7 @@ import {
 
 export function HomePage() {
   return (
-    <div className="lg:w-[80%] mx-auto flex flex-col">
+    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[65%] mx-auto flex flex-col">
       <Navbar />
       <ToastContainer />
 
