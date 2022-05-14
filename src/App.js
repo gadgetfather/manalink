@@ -1,5 +1,12 @@
-import { HomePage, LoginPage, SignupPage } from "./pages";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BookmarkPage,
+  ExplorePage,
+  HomePage,
+  LoginPage,
+  ProfilePage,
+  SignupPage,
+} from "./pages";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { useEffect } from "react";
 import { useAuth } from "./context/auth-context";
@@ -8,9 +15,14 @@ function App() {
     userInfo: { token },
   } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     if (token) {
-      navigate("/home");
+      if (location.pathname === "/") {
+        navigate("/home");
+      } else {
+        navigate(location.pathname);
+      }
     }
   }, [token]);
   return (
@@ -25,6 +37,30 @@ function App() {
           element={
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/bookmarks"
+          element={
+            <ProtectedRoute>
+              <BookmarkPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/explore"
+          element={
+            <ProtectedRoute>
+              <ExplorePage />
             </ProtectedRoute>
           }
         />
