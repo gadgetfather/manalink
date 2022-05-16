@@ -1,27 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../redux/features/auth/authSlice";
+import { toastError } from "../Toast/Toast";
 export function Navbar() {
-  const { setUserInfo } = useAuth();
-
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    setTimeout(() => {
-      localStorage.removeItem("manalink.user");
-      localStorage.removeItem("manalink.token");
-      setUserInfo({ token: "", user: "" });
-    }, 2000);
-
-    toast.error("You have been logged out", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    setTimeout(() => dispatch(userLogout()), 2000);
+    toastError("You have been logged out");
   };
   return (
     <nav className="h-12 bg-red-400 p-2 flex justify-between sticky top-0">
@@ -37,7 +24,10 @@ export function Navbar() {
           src="https://picsum.photos/200"
           alt=""
         />
-        <span onClick={handleLogout} className="material-symbols-outlined">
+        <span
+          onClick={handleLogout}
+          className="material-symbols-outlined cursor-pointer"
+        >
           logout
         </span>
       </div>
