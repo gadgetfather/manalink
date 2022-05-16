@@ -1,10 +1,6 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  isRejectedWithValue,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { toastError, toastSuccess } from "../../../components/Toast/Toast";
+import { toastError } from "../../../components/Toast/Toast";
 const initialState = {
   user: JSON.parse(localStorage.getItem("manalink.user")) || "",
   token: localStorage.getItem("manalink.token") || "",
