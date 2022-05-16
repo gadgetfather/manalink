@@ -10,7 +10,7 @@ import {
   PostCard,
   Sidebar,
 } from "../../components";
-import { createPost, getPosts } from "../../redux/features/post/postSlice";
+import { getPosts } from "../../redux/features/post/postSlice";
 
 export function HomePage() {
   const dispatch = useDispatch();
