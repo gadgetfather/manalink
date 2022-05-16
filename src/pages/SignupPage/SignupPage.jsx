@@ -1,11 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { useAuth } from "../../context/auth-context";
+// import { useAuth } from "../../context/auth-context";
 import "react-toastify/dist/ReactToastify.css";
+import { toastError } from "../../components/Toast/Toast";
+import { userSignup } from "../../redux/features/auth/authSlice";
 
 export function SignupPage() {
-  const { signup } = useAuth();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -19,30 +26,18 @@ export function SignupPage() {
       !formData.password ||
       !formData.username
     ) {
-      toast.error("Fill complete form", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastError("Fill complete form");
     } else if (formData.password !== formData.confirm_password) {
-      toast.error("Passwords should be same", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastError("Passwords should be same");
     } else {
-      signup(formData.username, formData.password);
+      dispatch(userSignup(formData));
     }
   };
-
+  useEffect(() => {
+    if (token && location.pathname === "/signup") {
+      navigate("/home");
+    }
+  }, [token, navigate, location]);
   return (
     <div className="w-full min-h-screen bg-white flex justify-center items-center font-body tint-image">
       <ToastContainer />
