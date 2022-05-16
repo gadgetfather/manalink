@@ -20,6 +20,7 @@ export function ExplorePage() {
           <h1 className="text-center text-3xl font-bold mb-2">
             Explore New Things...
           </h1>
+          {/* <PostCard />
           <PostCard />
           <PostCard />
           <PostCard />
@@ -29,8 +30,7 @@ export function ExplorePage() {
           <PostCard />
           <PostCard />
           <PostCard />
-          <PostCard />
-          <PostCard />
+          <PostCard /> */}
         </div>
         <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3">
           <PersonCard />

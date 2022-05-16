@@ -14,10 +14,10 @@ export function BookmarkPage() {
           <h1 className="text-3xl mb-2 text-center font-semibold">
             Saved Posts
           </h1>
+          {/* <PostCard />
           <PostCard />
           <PostCard />
-          <PostCard />
-          <PostCard />
+          <PostCard /> */}
         </div>
       </div>
       <MobileMenu />
