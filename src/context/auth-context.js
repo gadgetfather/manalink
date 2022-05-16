@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { toastError, toastSuccess } from "../components/Toast/Toast";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -24,15 +25,7 @@ const AuthProvider = ({ children }) => {
           token: response.data.encodedToken,
           user: response.data.foundUser,
         });
-        toast.success("Login sucessful!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastSuccess("Login sucessful!");
 
         localStorage.setItem("manalink.token", response.data.encodedToken);
         localStorage.setItem(
@@ -42,15 +35,7 @@ const AuthProvider = ({ children }) => {
         setTimeout(() => navigate("/home"), 2000);
       }
     } catch (error) {
-      toast.error(error.response.data.errors[0], {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastError(error.response.data.errors[0]);
     }
   };
   const signup = async (username, password) => {
@@ -60,27 +45,11 @@ const AuthProvider = ({ children }) => {
         password,
       });
       if (response.status === 201) {
-        toast.success("signup sucessful!\nYou can login now", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toastSuccess("signup sucessful!\nYou can login now");
         setTimeout(() => navigate("/"), 2200);
       }
     } catch (error) {
-      toast.error(error.response.data.errors[0], {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastError(error.response.data.errors[0]);
     }
   };
   return (
