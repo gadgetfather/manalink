@@ -1,6 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export function PostCard() {
+export function PostCard(props) {
+  const navigate = useNavigate();
+  const {
+    _id,
+    content,
+    username,
+    likes: { likeCount },
+  } = props;
+  const handleNavigateToProfile = () => {
+    navigate(`/${username}`);
+  };
   return (
     <div className=" p-2   flex flex-col border-b    ">
       <div className="flex items-center gap-2">
@@ -9,19 +20,18 @@ export function PostCard() {
           src="https://picsum.photos/200"
           alt=""
         />
-        <h2>Username</h2>
+        <h2 onClick={handleNavigateToProfile}>{username}</h2>
       </div>
       <div className="text-base">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-          sint non dolore esse consectetur porro maiores, quas laudantium
-          consequatur nesciunt!
-        </p>
+        <p className="whitespace-pre-line">{content}</p>
       </div>
       <div className="pt-2 flex justify-between">
-        <span className="cursor-pointer material-symbols-outlined">
-          favorite
-        </span>
+        <div className="flex items-center justify-center gap-2">
+          <span className="cursor-pointer material-symbols-outlined">
+            favorite
+          </span>
+          {likeCount}
+        </div>
         <span className="cursor-pointer material-symbols-outlined">chat</span>
         <span className="cursor-pointer material-symbols-outlined">share</span>
         <span className="cursor-pointer material-symbols-outlined">
