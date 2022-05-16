@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 // import { useAuth } from "../../context/auth-context";
 import "react-toastify/dist/ReactToastify.css";
 import { toastError } from "../../components/Toast/Toast";
