@@ -1,28 +1,32 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toastError } from "../../components/Toast/Toast";
+import { userLogin } from "../../redux/features/auth/authSlice";
 export function LoginPage() {
-  const { login } = useAuth();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({ username: "", password: "" });
   const handleLogin = (e) => {
     e.preventDefault();
     if (!formData.password || !formData.username) {
-      toast.error("Fill complete form", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastError("Fill complete form");
     } else {
-      login(formData);
+      dispatch(userLogin(formData));
     }
   };
+
+  useEffect(() => {
+    if (token && location.pathname === "/") {
+      navigate("/home");
+    }
+  }, [token, navigate, location]);
   return (
     <div className="w-full min-h-screen  flex justify-center items-center font-body tint-image">
       <ToastContainer />
