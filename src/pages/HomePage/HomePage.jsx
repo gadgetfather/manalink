@@ -10,7 +10,7 @@ import {
   PostCard,
   Sidebar,
 } from "../../components";
-import { getPosts } from "../../redux/features/post/postSlice";
+import { getPosts } from "../../redux/features/post/postThunk";
 
 export function HomePage() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export function HomePage() {
   const reversePosts = [...posts].reverse();
   useEffect(() => {
     dispatch(getPosts());
-  }, [posts, dispatch]);
+  }, []);
   return (
     <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col">
       <Navbar />
