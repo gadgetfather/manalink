@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux/features/modal/modalSlice";
-import { createPost } from "../../redux/features/post/postSlice";
+import { createPost } from "../../redux/features/post/postThunk";
 
 export function PostModal() {
   const dispatch = useDispatch();
