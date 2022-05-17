@@ -58,7 +58,6 @@ const postSlice = createSlice({
         toastError(action.payload.errors[0]);
       })
       .addCase(addToBookmarks.fulfilled, (state, action) => {
-        console.log(action);
         state.bookmarks = action.payload.bookmarks;
       })
       .addCase(addToBookmarks.rejected, (state, action) => {
