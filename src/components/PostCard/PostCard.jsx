@@ -1,12 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { dislikePost, likePost } from "../../redux/features/post/postThunk";
+import {
+  addToBookmarks,
+  dislikePost,
+  likePost,
+  removeFromBookmarks,
+} from "../../redux/features/post/postThunk";
 
 export function PostCard(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { username: currentUser } = useSelector((state) => state.auth.user);
+  const { posts, bookmarks } = useSelector((state) => state.post);
   const {
     _id,
     content,
@@ -22,6 +28,12 @@ export function PostCard(props) {
 
   const handleDislike = (id) => {
     dispatch(dislikePost(id));
+  };
+  const handleAddToBookmark = (id) => {
+    dispatch(addToBookmarks(id));
+  };
+  const handleRemoveFromBookmark = (id) => {
+    dispatch(removeFromBookmarks(id));
   };
 
   return (
@@ -39,10 +51,13 @@ export function PostCard(props) {
       </div>
       <div className="pt-2 flex justify-between">
         <div className="flex items-center justify-center gap-2">
-          {likedBy.some((user) => user.username === currentUser) ? (
+          {likedBy.some((user) => user.username === currentUser) ||
+          bookmarks.some((post) =>
+            post.likes.likedBy.some((user) => user.username === currentUser)
+          ) ? (
             <span
               onClick={() => handleDislike(_id)}
-              className="cursor-pointer material-symbols-outlined heartFilled text-red-500"
+              className="cursor-pointer material-symbols-outlined filled text-red-500"
             >
               favorite
             </span>
@@ -58,9 +73,21 @@ export function PostCard(props) {
         </div>
         <span className="cursor-pointer material-symbols-outlined">chat</span>
         <span className="cursor-pointer material-symbols-outlined">share</span>
-        <span className="cursor-pointer material-symbols-outlined">
-          bookmark
-        </span>
+        {bookmarks.some((post) => post._id === _id) ? (
+          <span
+            onClick={() => handleRemoveFromBookmark(_id)}
+            className="cursor-pointer material-symbols-outlined filled "
+          >
+            bookmark
+          </span>
+        ) : (
+          <span
+            onClick={() => handleAddToBookmark(_id)}
+            className="cursor-pointer material-symbols-outlined"
+          >
+            bookmark
+          </span>
+        )}
       </div>
     </div>
   );
