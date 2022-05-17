@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import { MobileMenu, Navbar, PostCard, Sidebar } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserPost } from "../../redux/features/post/postSlice";
+import { getUserPost } from "../../redux/features/post/postThunk";
 import { useParams } from "react-router-dom";
 
 export function ProfilePage() {
