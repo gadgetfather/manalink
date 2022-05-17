@@ -1,51 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toastError } from "../../../components/Toast/Toast";
+import {
+  getPosts,
+  createPost,
+  getUserPost,
+  dislikePost,
+  likePost,
+} from "./postThunk";
 const initialState = {
   posts: [],
   loading: false,
   userPost: [],
 };
-export const getPosts = createAsyncThunk(
-  "post/getPost",
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await axios.get("api/posts");
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-export const createPost = createAsyncThunk(
-  "api/createPost",
-  async (postData, thunkAPI) => {
-    const encodedToken = thunkAPI.getState().auth.token;
-    try {
-      const response = await axios.post(
-        "/api/posts",
-        { postData },
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-export const getUserPost = createAsyncThunk(
-  "post/userpost",
-  async (userName, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`/api/posts/user/${userName}`);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
 
 const postSlice = createSlice({
   name: "post",
@@ -73,6 +40,18 @@ const postSlice = createSlice({
         state.userPost = action.payload.posts;
       })
       .addCase(getUserPost.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(likePost.fulfilled, (state, action) => {
+        state.posts = action.payload.posts;
+      })
+      .addCase(likePost.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(dislikePost.fulfilled, (state, action) => {
+        state.posts = action.payload.posts;
+      })
+      .addCase(dislikePost.rejected, (state, action) => {
         toastError(action.payload.errors[0]);
       });
   },
