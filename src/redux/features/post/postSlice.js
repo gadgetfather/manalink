@@ -7,11 +7,14 @@ import {
   getUserPost,
   dislikePost,
   likePost,
+  addToBookmarks,
+  removeFromBookmarks,
 } from "./postThunk";
 const initialState = {
   posts: [],
   loading: false,
   userPost: [],
+  bookmarks: [],
 };
 
 const postSlice = createSlice({
@@ -52,6 +55,19 @@ const postSlice = createSlice({
         state.posts = action.payload.posts;
       })
       .addCase(dislikePost.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(addToBookmarks.fulfilled, (state, action) => {
+        console.log(action);
+        state.bookmarks = action.payload.bookmarks;
+      })
+      .addCase(addToBookmarks.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(removeFromBookmarks.fulfilled, (state, action) => {
+        state.bookmarks = action.payload.bookmarks;
+      })
+      .addCase(removeFromBookmarks.rejected, (state, action) => {
         toastError(action.payload.errors[0]);
       });
   },
