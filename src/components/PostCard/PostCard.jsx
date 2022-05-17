@@ -30,6 +30,7 @@ export function PostCard(props) {
     dispatch(dislikePost(id));
   };
   const handleAddToBookmark = (id) => {
+    console.log("bookmarked");
     dispatch(addToBookmarks(id));
   };
   const handleRemoveFromBookmark = (id) => {
@@ -51,10 +52,7 @@ export function PostCard(props) {
       </div>
       <div className="pt-2 flex justify-between">
         <div className="flex items-center justify-center gap-2">
-          {likedBy.some((user) => user.username === currentUser) ||
-          bookmarks.some((post) =>
-            post.likes.likedBy.some((user) => user.username === currentUser)
-          ) ? (
+          {likedBy.some((user) => user.username === currentUser) ? (
             <span
               onClick={() => handleDislike(_id)}
               className="cursor-pointer material-symbols-outlined filled text-red-500"
