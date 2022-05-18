@@ -4,7 +4,11 @@ import { ToastContainer } from "react-toastify";
 import { MobileMenu, Navbar, PostCard, Sidebar } from "../../components";
 
 export function BookmarkPage() {
-  const bookmarks = useSelector((state) => state.post.bookmarks);
+  const bookmarksArr = useSelector((state) => state.post.bookmarks);
+  const posts = useSelector((state) => state.post.posts);
+  const bookmarks = posts.filter((val) =>
+    bookmarksArr.map((n) => n.id).includes(val.id)
+  );
 
   return (
     <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col">
