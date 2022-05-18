@@ -33,4 +33,17 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      "Yes I really well try to roll the public company, twitter has to do you bought this taken thank you?",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "shubhamsoni",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];

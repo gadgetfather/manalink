@@ -1,6 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { openModal } from "../../redux/features/modal/modalSlice";
 export function MobileMenu() {
+  const dispatch = useDispatch();
+  const handleOpenModel = () => {
+    dispatch(openModal());
+  };
   return (
     <div className="h-10 bg-yellow-200 sticky w-full bottom-0 flex justify-between items-center px-2 lg:hidden">
       <NavLink
@@ -24,9 +30,9 @@ export function MobileMenu() {
       >
         <span className="material-symbols-outlined">bookmark</span>
       </NavLink>
-      <NavLink to={"/"}>
+      <button onClick={handleOpenModel}>
         <span className="material-symbols-outlined">add_circle</span>
-      </NavLink>
+      </button>
       <NavLink
         to={"/explore"}
         className={({ isActive }) =>

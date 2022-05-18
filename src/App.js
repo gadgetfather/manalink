@@ -8,10 +8,14 @@ import {
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { PostModal } from "./components";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { isOpen } = useSelector((state) => state.modal);
   return (
     <div>
+      {isOpen && <PostModal />}
       <Routes>
         <Route path="/" element={<LoginPage />} />
 
@@ -34,7 +38,7 @@ function App() {
           }
         />
         <Route
-          path="/profile"
+          path="/:profile"
           element={
             <ProtectedRoute>
               <ProfilePage />
