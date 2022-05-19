@@ -18,6 +18,7 @@ export function HomePage() {
   const posts = useSelector((state) => state.post.posts);
   const { editPostModal } = useSelector((state) => state.modal);
   const reversePosts = [...posts].reverse();
+  console.log(posts);
   useEffect(() => {
     dispatch(getPosts());
   }, []);
