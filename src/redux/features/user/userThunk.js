@@ -12,19 +12,50 @@ export const getAllUsers = createAsyncThunk(
     }
   }
 );
+export const getSingleUser = createAsyncThunk(
+  "user/getSingleUser",
+  async (userId, thunkAPI) => {
+    try {
+      const response = await axios.get(`/api/users/${userId}`);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 export const follow = createAsyncThunk(
   "user/follow",
-  async (data, thunkAPI) => {
+  async (followUserId, thunkAPI) => {
     const encodedToken = thunkAPI.getState().auth.token;
     try {
       const response = await axios.post(
-        `/api/users/follow/${data.followUserId}`,
+        `/api/users/follow/${followUserId}`,
         {},
         { headers: { authorization: encodedToken } }
       );
       console.log(response);
+      return response.data;
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+export const unfollow = createAsyncThunk(
+  "user/unfollow",
+  async (followUserId, thunkAPI) => {
+    const encodedToken = thunkAPI.getState().auth.token;
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${followUserId}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
