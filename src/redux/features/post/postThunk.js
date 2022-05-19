@@ -49,7 +49,7 @@ export const deletePost = createAsyncThunk(
   "api/deletePost",
   async (postId, thunkAPI) => {
     const encodedToken = thunkAPI.getState().auth.token;
-    console.log("deletePOst", encodedToken);
+
     try {
       const response = await axios.delete(
         `/api/posts/${postId}`,
@@ -58,10 +58,9 @@ export const deletePost = createAsyncThunk(
           headers: { authorization: encodedToken },
         }
       );
-      console.log("RESPONSE", response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -192,10 +191,9 @@ export const addComment = createAsyncThunk(
           headers: { authorization: getState().auth.token },
         }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -205,10 +203,9 @@ export const getComments = createAsyncThunk(
   async (postId, { rejectWithValue, getState }) => {
     try {
       const response = await axios.get(`/api/comments/${postId}`);
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -225,10 +222,9 @@ export const upvoteComment = createAsyncThunk(
           headers: { authorization: getState().auth.token },
         }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -245,10 +241,9 @@ export const downvoteComment = createAsyncThunk(
           headers: { authorization: getState().auth.token },
         }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -266,10 +261,9 @@ export const editComment = createAsyncThunk(
           headers: { authorization: getState().auth.token },
         }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -285,10 +279,9 @@ export const deleteComment = createAsyncThunk(
           headers: { authorization: getState().auth.token },
         }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
