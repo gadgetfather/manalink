@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  openEditCommentModal,
+  openEditPostModal,
+} from "../../redux/features/modal/modalSlice";
 import {
   addToBookmarks,
+  deletePost,
   dislikePost,
   likePost,
   removeFromBookmarks,
@@ -12,13 +17,18 @@ export function PostCard(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { username: currentUser } = useSelector((state) => state.auth.user);
+
   const { posts, bookmarks } = useSelector((state) => state.post);
+  const location = useLocation();
+  console.log();
   const {
     _id,
     content,
     username,
     likes: { likeCount, likedBy },
+    comments,
   } = props;
+  const [editPost, setEditPost] = useState({ text: content, postId: _id });
   const handleNavigateToProfile = () => {
     navigate(`/${username}`);
   };
@@ -30,13 +40,25 @@ export function PostCard(props) {
     dispatch(dislikePost(id));
   };
   const handleAddToBookmark = (id) => {
-    console.log("bookmarked");
     dispatch(addToBookmarks(id));
   };
   const handleRemoveFromBookmark = (id) => {
     dispatch(removeFromBookmarks(id));
   };
-
+  const handleNavigateToSinglePost = (id) => {
+    navigate(`/post/${id}`);
+  };
+  const handleDeletePost = (id) => {
+    if (location.pathname.includes("/post/")) {
+      navigate("/home");
+      setTimeout(() => dispatch(deletePost(id)), 500);
+      return;
+    }
+    dispatch(deletePost(id));
+  };
+  const handleEditPost = () => {
+    dispatch(openEditPostModal(editPost));
+  };
   return (
     <div className=" p-2   flex flex-col border-b    ">
       <div className="flex items-center gap-2">
@@ -46,6 +68,26 @@ export function PostCard(props) {
           alt=""
         />
         <h2 onClick={handleNavigateToProfile}>{username}</h2>
+        {username === currentUser ? (
+          <div className="ml-auto flex gap-2">
+            <span
+              onClick={handleEditPost}
+              title="edit post"
+              className="material-symbols-outlined cursor-pointer"
+            >
+              edit
+            </span>
+            <span
+              onClick={() => handleDeletePost(_id)}
+              title="delete post"
+              className="material-symbols-outlined cursor-pointer"
+            >
+              delete
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="text-base">
         <p className="whitespace-pre-line py-2">{content}</p>
@@ -69,7 +111,15 @@ export function PostCard(props) {
           )}
           {likeCount}
         </div>
-        <span className="cursor-pointer material-symbols-outlined">chat</span>
+        <div className="flex items-center gap-2">
+          <span
+            onClick={() => handleNavigateToSinglePost(_id)}
+            className="cursor-pointer material-symbols-outlined mt-[.15rem]"
+          >
+            chat
+          </span>
+          {comments.length}
+        </div>
         <span className="cursor-pointer material-symbols-outlined">share</span>
         {bookmarks.some((post) => post._id === _id) ? (
           <span

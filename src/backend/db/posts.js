@@ -19,6 +19,26 @@ export const posts = [
     username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -30,19 +50,27 @@ export const posts = [
       dislikedBy: [],
     },
     username: "shubhamsoni",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    content:
-      "Yes I really well try to roll the public company, twitter has to do you bought this taken thank you?",
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "shubhamsoni",
+
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

@@ -5,6 +5,7 @@ import {
   LoginPage,
   ProfilePage,
   SignupPage,
+  SinglePostPage,
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
@@ -16,6 +17,7 @@ function App() {
   return (
     <div>
       {isOpen && <PostModal />}
+      {}
       <Routes>
         <Route path="/" element={<LoginPage />} />
 
@@ -42,6 +44,14 @@ function App() {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/post/:postId"
+          element={
+            <ProtectedRoute>
+              <SinglePostPage />
             </ProtectedRoute>
           }
         />
