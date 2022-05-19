@@ -34,10 +34,10 @@ export const follow = createAsyncThunk(
         {},
         { headers: { authorization: encodedToken } }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
-      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
