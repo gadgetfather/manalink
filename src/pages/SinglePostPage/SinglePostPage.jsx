@@ -11,16 +11,11 @@ import {
   PersonCard,
   PostCard,
   Sidebar,
-  SinglePost,
   Comment,
   EditCommentModal,
 } from "../../components";
-import { setSinglePost } from "../../redux/features/post/postSlice";
-import {
-  getComments,
-  getPosts,
-  getSinglePost,
-} from "../../redux/features/post/postThunk";
+
+import { getComments } from "../../redux/features/post/postThunk";
 
 export function SinglePostPage() {
   const dispatch = useDispatch();
