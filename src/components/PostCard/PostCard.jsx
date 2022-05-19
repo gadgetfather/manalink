@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   openEditCommentModal,
   openEditPostModal,
@@ -19,6 +19,8 @@ export function PostCard(props) {
   const { username: currentUser } = useSelector((state) => state.auth.user);
 
   const { posts, bookmarks } = useSelector((state) => state.post);
+  const location = useLocation();
+  console.log();
   const {
     _id,
     content,
@@ -47,6 +49,11 @@ export function PostCard(props) {
     navigate(`/post/${id}`);
   };
   const handleDeletePost = (id) => {
+    if (location.pathname.includes("/post/")) {
+      navigate("/home");
+      setTimeout(() => dispatch(deletePost(id)), 500);
+      return;
+    }
     dispatch(deletePost(id));
   };
   const handleEditPost = () => {
