@@ -19,7 +19,18 @@ export function HomePage() {
   const posts = useSelector((state) => state.post.posts);
   const { editPostModal } = useSelector((state) => state.modal);
   const { users } = useSelector((state) => state.user);
+  const {
+    user: { following, username },
+  } = useSelector((state) => state.auth);
   const reversePosts = [...posts].reverse();
+  const followingUserNameArr = [...following].map((user) => user.username);
+  const followingOnlyPosts = reversePosts.filter((post) =>
+    followingUserNameArr.includes(post.username)
+  );
+  const temp = reversePosts
+    .filter((post) => post.username === username)
+    .reverse()
+    .concat(followingOnlyPosts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -33,7 +44,7 @@ export function HomePage() {
       <div className="min-h-screen grid grid-cols-1   lg:grid-layout">
         <Sidebar />
         <div>
-          {reversePosts.map((post) => (
+          {temp.map((post) => (
             <PostCard key={post.id} {...post} />
           ))}
         </div>
