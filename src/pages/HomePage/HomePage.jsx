@@ -12,15 +12,18 @@ import {
   Sidebar,
 } from "../../components";
 import { getPosts } from "../../redux/features/post/postThunk";
+import { getAllUsers } from "../../redux/features/user/userThunk";
 
 export function HomePage() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts);
   const { editPostModal } = useSelector((state) => state.modal);
+  const { users } = useSelector((state) => state.user);
   const reversePosts = [...posts].reverse();
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getAllUsers());
   }, []);
   return (
     <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col">
@@ -35,9 +38,9 @@ export function HomePage() {
           ))}
         </div>
         <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3">
-          <PersonCard />
-          <PersonCard />
-          <PersonCard />
+          {users.map((user) => (
+            <PersonCard key={user.id} {...user} />
+          ))}
         </div>
       </div>
       <MobileMenu />

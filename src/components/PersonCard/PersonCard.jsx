@@ -1,6 +1,7 @@
 import React from "react";
 
-export function PersonCard() {
+export function PersonCard(props) {
+  const { username, _id } = props;
   return (
     <div className=" flex flex-col p-2 border-b">
       <div className="flex items-center gap-2">
@@ -9,7 +10,7 @@ export function PersonCard() {
           src="https://picsum.photos/200"
           alt=""
         />
-        <h2>Username</h2>
+        <h2>{username}</h2>
       </div>
       <div className="mt-2 ml-auto mr-4">
         <button>Follow</button>
