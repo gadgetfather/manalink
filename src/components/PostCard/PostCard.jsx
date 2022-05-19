@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  openEditCommentModal,
-  openEditPostModal,
-} from "../../redux/features/modal/modalSlice";
+import { openEditPostModal } from "../../redux/features/modal/modalSlice";
 import {
   addToBookmarks,
   deletePost,
@@ -18,7 +15,7 @@ export function PostCard(props) {
   const dispatch = useDispatch();
   const { username: currentUser } = useSelector((state) => state.auth.user);
 
-  const { posts, bookmarks } = useSelector((state) => state.post);
+  const { bookmarks } = useSelector((state) => state.post);
   const location = useLocation();
   console.log();
   const {
@@ -28,7 +25,7 @@ export function PostCard(props) {
     likes: { likeCount, likedBy },
     comments,
   } = props;
-  const [editPost, setEditPost] = useState({ text: content, postId: _id });
+  const [editPost] = useState({ text: content, postId: _id });
   const handleNavigateToProfile = () => {
     navigate(`/${username}`);
   };
