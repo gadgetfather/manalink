@@ -49,7 +49,7 @@ export function Sidebar() {
           <h2>Bookmarked</h2>
         </NavLink>
         <NavLink
-          to={"/profile"}
+          to={`/${user.username}`}
           className={({ isActive }) =>
             isActive
               ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"

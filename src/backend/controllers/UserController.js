@@ -22,7 +22,8 @@ export const getAllUsersHandler = function () {
 export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ username: userId }).attrs;
+    delete user.password;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
@@ -56,7 +57,7 @@ export const editUserHandler = function (schema, request) {
       );
     }
     const { userData } = JSON.parse(request.requestBody);
-    user = { ...user, ...userData, updatedAt: formatDate() };
+    user = { ...user, bio: userData, updatedAt: formatDate() };
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { user });
   } catch (error) {

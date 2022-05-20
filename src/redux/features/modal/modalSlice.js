@@ -7,6 +7,8 @@ const initialState = {
   editPostId: "",
   editPostText: "",
   editPostModal: false,
+  editProfile: false,
+  editProfileText: "",
 };
 const modalSlice = createSlice({
   name: "modal",
@@ -45,6 +47,16 @@ const modalSlice = createSlice({
       state.editCommentText = "";
       state.editCommentId = "";
     },
+    openEditProfileModal: (state, action) => {
+      state.editProfile = true;
+      document.body.style.overflow = "hidden";
+      state.editProfileText = action.payload;
+    },
+    closeEditProfileModal: (state, action) => {
+      state.editProfile = false;
+      document.body.style.overflow = "unset";
+      state.editProfileText = "";
+    },
   },
 });
 export const {
@@ -54,5 +66,7 @@ export const {
   closeEditCommentModal,
   openEditPostModal,
   closeEditPostModal,
+  closeEditProfileModal,
+  openEditProfileModal,
 } = modalSlice.actions;
 export default modalSlice.reducer;

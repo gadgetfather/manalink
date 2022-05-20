@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toastError } from "../../../components/Toast/Toast";
+import { follow, unfollow } from "../user/userThunk";
 const initialState = {
   user: JSON.parse(localStorage.getItem("manalink.user")) || "",
   token: localStorage.getItem("manalink.token") || "",
@@ -75,6 +76,18 @@ const authSlice = createSlice({
         );
       })
       .addCase(userSignup.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(follow.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+      })
+      .addCase(follow.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(unfollow.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+      })
+      .addCase(unfollow.rejected, (state, action) => {
         toastError(action.payload.errors[0]);
       });
   },
