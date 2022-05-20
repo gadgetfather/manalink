@@ -9,3 +9,4 @@ export { CommentForm } from "./CommentForm/CommentForm";
 export { Comment } from "./Comment/Comment";
 export { EditCommentModal } from "./EditCommentModal/EditCommentModal";
 export { EditPostModal } from "./EditPostModal/EditPostModal";
+export { EditProfileModal } from "./EditProfileModal/EditProfileModal";
