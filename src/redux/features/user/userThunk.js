@@ -59,3 +59,22 @@ export const unfollow = createAsyncThunk(
     }
   }
 );
+
+export const editProfile = createAsyncThunk(
+  "user/editProfile",
+  async (userData, thunkAPI) => {
+    const encodedToken = thunkAPI.getState().auth.token;
+
+    try {
+      const response = await axios.post(
+        "/api/users/edit",
+        { userData },
+        { headers: { authorization: encodedToken } }
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
