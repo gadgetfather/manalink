@@ -23,6 +23,7 @@ export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
   try {
     const user = schema.users.findBy({ username: userId }).attrs;
+    delete user.password;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
