@@ -61,14 +61,14 @@ export function Sidebar() {
         </NavLink>
         <button
           onClick={handleOpenModel}
-          className="bg-red-400 mx-2 rounded-2xl p-1"
+          className="bg-primary-orange-600 font-medium mx-2 rounded-2xl p-1 hover:bg-primary-orange-700"
         >
           New Post
         </button>
         <div className="flex items-center mt-auto pb-2 gap-2">
           <img
-            className="w-10 h-10 rounded-full"
-            src="https://picsum.photos/200"
+            className="w-10 h-10 rounded-full object-cover"
+            src={user.profileImg}
             alt=""
           />
           <h2>{user.username}</h2>
