@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
+
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +56,7 @@ export function Navbar() {
                     setFilteredData([]);
                     setSearchValue("");
                   }}
-                  key={user._id}
+                  key={uuid()}
                   className="p-2"
                   to={`/${user.username}`}
                 >
