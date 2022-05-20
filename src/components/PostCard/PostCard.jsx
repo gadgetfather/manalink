@@ -56,6 +56,7 @@ export function PostCard(props) {
   const handleEditPost = () => {
     dispatch(openEditPostModal(editPost));
   };
+
   return (
     <div className=" p-2   flex flex-col border-b    ">
       <div className="flex items-center gap-2">
@@ -64,7 +65,9 @@ export function PostCard(props) {
           src="https://picsum.photos/200"
           alt=""
         />
-        <h2 onClick={handleNavigateToProfile}>{username}</h2>
+        <h2 className="cursor-pointer" onClick={handleNavigateToProfile}>
+          {username}
+        </h2>
         {username === currentUser ? (
           <div className="ml-auto flex gap-2">
             <span
@@ -86,7 +89,10 @@ export function PostCard(props) {
           ""
         )}
       </div>
-      <div className="text-base">
+      <div
+        onClick={() => handleNavigateToSinglePost(_id)}
+        className="text-base cursor-pointer"
+      >
         <p className="whitespace-pre-line py-2">{content}</p>
       </div>
       <div className="pt-2 flex justify-between">
