@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { openEditPostModal } from "../../redux/features/modal/modalSlice";
@@ -6,18 +6,24 @@ import {
   addToBookmarks,
   deletePost,
   dislikePost,
+  getPosts,
   likePost,
   removeFromBookmarks,
 } from "../../redux/features/post/postThunk";
+import { getAllUsers } from "../../redux/features/user/userThunk";
 
 export function PostCard(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { username: currentUser } = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
+  const { visitingUser } = useSelector((state) => state.user);
 
+  const { users } = useSelector((state) => state.user);
+
+  const { username: currentUser } = user;
   const { bookmarks } = useSelector((state) => state.post);
   const location = useLocation();
-  console.log();
+
   const {
     _id,
     content,
@@ -25,6 +31,9 @@ export function PostCard(props) {
     likes: { likeCount, likedBy },
     comments,
   } = props;
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch, visitingUser]);
   const [editPost] = useState({ text: content, postId: _id });
   const handleNavigateToProfile = () => {
     navigate(`/${username}`);
@@ -60,11 +69,15 @@ export function PostCard(props) {
   return (
     <div className=" p-2   flex flex-col border-b    ">
       <div className="flex items-center gap-2">
-        <img
-          className="h-10 w-10 rounded-full"
-          src="https://picsum.photos/200"
-          alt=""
-        />
+        {users
+          .filter((user) => user.username === username)
+          .map((user) => (
+            <img
+              className="h-10 w-10 rounded-full object-cover"
+              src={user.profileImg}
+              alt=""
+            />
+          ))}
         <h2 className="cursor-pointer" onClick={handleNavigateToProfile}>
           {username}
         </h2>
