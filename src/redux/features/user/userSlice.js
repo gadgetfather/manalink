@@ -1,5 +1,5 @@
 import { toastError } from "../../../components/Toast/Toast";
-import { getAllUsers, getSingleUser } from "./userThunk";
+import { editProfile, getAllUsers, getSingleUser } from "./userThunk";
 
 const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
@@ -22,6 +22,12 @@ const userSlice = createSlice({
         state.visitingUser = action.payload.user;
       })
       .addCase(getSingleUser.rejected, (state, action) => {
+        toastError(action.payload.errors[0]);
+      })
+      .addCase(editProfile.fulfilled, (state, action) => {
+        state.visitingUser = action.payload.user;
+      })
+      .addCase(editProfile.rejected, (state, action) => {
         toastError(action.payload.errors[0]);
       });
   },
