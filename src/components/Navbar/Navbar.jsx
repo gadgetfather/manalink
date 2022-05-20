@@ -49,7 +49,15 @@ export function Navbar() {
           {filteredData.length > 0 ? (
             <div className="absolute bg-white border w-40 h-fit lg:w-60">
               {filteredData.map((user) => (
-                <Link key={user.id} className="p-2" to={`/${user.username}`}>
+                <Link
+                  onClick={() => {
+                    setFilteredData([]);
+                    setSearchValue("");
+                  }}
+                  key={user._id}
+                  className="p-2"
+                  to={`/${user.username}`}
+                >
                   {user.username}
                 </Link>
               ))}
