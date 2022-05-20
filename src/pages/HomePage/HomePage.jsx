@@ -38,7 +38,7 @@ export function HomePage() {
     dispatch(getAllUsers());
   }, []);
   return (
-    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col">
+    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col ">
       <Navbar />
       <ToastContainer />
       {editPostModal && <EditPostModal />}

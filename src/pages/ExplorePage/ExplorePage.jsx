@@ -25,7 +25,7 @@ export function ExplorePage() {
       <Navbar />
       <ToastContainer />
 
-      <div className="min-h-screen grid grid-cols-1   lg:grid-layout">
+      <div className="min-h-[calc(100vh_-_88px)] grid grid-cols-1   lg:grid-layout">
         <Sidebar />
         <div>
           <h1 className="text-center text-3xl font-bold mb-2">
