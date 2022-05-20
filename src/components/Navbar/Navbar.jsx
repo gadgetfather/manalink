@@ -9,6 +9,7 @@ import { toastError } from "../Toast/Toast";
 export function Navbar() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.auth.user);
 
   const handleLogout = () => {
     setTimeout(() => dispatch(userLogout()), 2000);
@@ -30,7 +31,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="h-12 bg-primary-orange p-2 flex justify-between sticky top-0 z-40 rounded-b-lg">
+    <nav className="h-12 bg-primary-orange-600 p-2 flex justify-between sticky top-0 z-40 rounded-b-lg">
       <div>
         <Link className="text-lg font-semibold" to={"/home"}>
           Manalink
@@ -78,8 +79,8 @@ export function Navbar() {
           )}
         </div>
         <img
-          className="w-8 h-8 rounded-full object-center"
-          src="https://picsum.photos/200"
+          className="w-8 h-8 rounded-full object-cover"
+          src={user.profileImg}
           alt=""
         />
         <span
