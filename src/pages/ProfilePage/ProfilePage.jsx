@@ -1,22 +1,33 @@
 import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
-import { MobileMenu, Navbar, PostCard, Sidebar } from "../../components";
+import {
+  EditProfileModal,
+  MobileMenu,
+  Navbar,
+  PostCard,
+  Sidebar,
+} from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import { getSingleUser } from "../../redux/features/user/userThunk";
+import {
+  follow,
+  getSingleUser,
+  unfollow,
+} from "../../redux/features/user/userThunk";
 import { getPosts } from "../../redux/features/post/postThunk";
+import { openEditProfileModal } from "../../redux/features/modal/modalSlice";
 
 export function ProfilePage() {
   const { profile } = useParams();
   const { posts } = useSelector((state) => state.post);
   const {
-    user: { username: currentUser },
+    user: { username: currentUser, following },
   } = useSelector((state) => state.auth);
-
+  const { editProfile } = useSelector((state) => state.modal);
   const {
-    visitingUser: { username },
+    visitingUser: { username, _id, bio },
   } = useSelector((state) => state.user);
 
   const [showHover, setShowHover] = useState(false);
@@ -27,11 +38,21 @@ export function ProfilePage() {
 
     dispatch(getSingleUser(profile));
   }, [dispatch, profile]);
+
+  const handleFollow = () => {
+    dispatch(follow(_id));
+  };
+  const handleUnfollow = () => {
+    dispatch(unfollow(_id));
+  };
+  const handleEditProfileModal = () => {
+    dispatch(openEditProfileModal(bio));
+  };
   return (
     <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col ">
       <Navbar />
       <ToastContainer />
-
+      {editProfile && <EditProfileModal />}
       <div className="min-h-screen grid grid-cols-1   lg:grid-layout ">
         <Sidebar />
         <div className="border-r">
@@ -67,19 +88,32 @@ export function ProfilePage() {
 
               <h1 className="font-medium text-lg">{username}</h1>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores iste corporis repellat expedita tempora excepturi
-            </p>
+            <p>{bio}</p>
             {profile === currentUser ? (
-              <button className="ml-auto mr-2">Edit</button>
+              <button onClick={handleEditProfileModal} className="ml-auto mr-2">
+                Edit
+              </button>
             ) : (
-              <button className="ml-auto mr-2">follow</button>
+              <>
+                {following.some((user) => user.username === profile) ? (
+                  <button onClick={handleUnfollow} className="ml-auto mr-2">
+                    following
+                  </button>
+                ) : (
+                  <button onClick={handleFollow} className="ml-auto mr-2">
+                    follow
+                  </button>
+                )}
+              </>
             )}
           </div>
-          {userPosts.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
+          {userPosts.length > 0 ? (
+            userPosts.map((post) => <PostCard key={post.id} {...post} />)
+          ) : (
+            <h1 className="text-center mt-4 font-medium text-3xl">
+              No posts yet...
+            </h1>
+          )}
         </div>
       </div>
       <MobileMenu />
