@@ -28,6 +28,7 @@ export function Navbar() {
         : setFilteredData([{ id: 0, username: "Not Found" }]);
     } else setFilteredData([]);
   };
+
   return (
     <nav className="h-12 bg-red-400 p-2 flex justify-between sticky top-0 z-40">
       <div>
@@ -49,20 +50,28 @@ export function Navbar() {
             type="search"
           />
           {filteredData.length > 0 ? (
-            <div className="absolute bg-white border w-40 h-fit lg:w-60">
-              {filteredData.map((user) => (
-                <Link
-                  onClick={() => {
-                    setFilteredData([]);
-                    setSearchValue("");
-                  }}
-                  key={uuid()}
-                  className="p-2"
-                  to={`/${user.username}`}
-                >
-                  {user.username}
-                </Link>
-              ))}
+            <div className="absolute bg-white border w-40 h-24 overflow-auto lg:w-60">
+              {filteredData.map((user) =>
+                user.username === "Not Found" ? (
+                  "No user found"
+                ) : (
+                  <>
+                    <Link
+                      onClick={() => {
+                        setFilteredData([]);
+                        setSearchValue("");
+                      }}
+                      key={uuid()}
+                      className=" "
+                      to={`/${user.username}`}
+                    >
+                      <p className="p-1 w-full border-b hover:bg-slate-500">
+                        {user.username}
+                      </p>
+                    </Link>
+                  </>
+                )
+              )}
             </div>
           ) : (
             ""
