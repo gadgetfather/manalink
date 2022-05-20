@@ -14,9 +14,9 @@ export const getAllUsers = createAsyncThunk(
 );
 export const getSingleUser = createAsyncThunk(
   "user/getSingleUser",
-  async (userId, thunkAPI) => {
+  async (username, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/users/${userId}`);
+      const response = await axios.get(`/api/users/${username}`);
 
       return response.data;
     } catch (error) {
