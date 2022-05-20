@@ -26,10 +26,8 @@ export function ProfilePage() {
     user: { username: currentUser, following },
   } = useSelector((state) => state.auth);
   const { editProfile } = useSelector((state) => state.modal);
-  const {
-    visitingUser: { username, _id, bio },
-  } = useSelector((state) => state.user);
-
+  const { visitingUser } = useSelector((state) => state.user);
+  const { username, _id, bio } = visitingUser;
   const [showHover, setShowHover] = useState(false);
   const userPosts = posts.filter((post) => post.username === profile).reverse();
   const dispatch = useDispatch();
@@ -48,6 +46,7 @@ export function ProfilePage() {
   const handleEditProfileModal = () => {
     dispatch(openEditProfileModal(bio));
   };
+
   return (
     <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col ">
       <Navbar />
