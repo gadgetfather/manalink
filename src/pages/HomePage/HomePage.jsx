@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,7 +28,7 @@ export function HomePage() {
   const followingOnlyPosts = reversePosts.filter((post) =>
     followingUserNameArr.includes(post.username)
   );
-  const temp = reversePosts
+  const userAndFollowingPost = reversePosts
     .filter((post) => post.username === username)
     .reverse()
     .concat(followingOnlyPosts);
@@ -44,9 +45,26 @@ export function HomePage() {
       <div className="min-h-screen grid grid-cols-1   lg:grid-layout">
         <Sidebar />
         <div>
-          {temp.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
+          {userAndFollowingPost.length > 0 ? (
+            userAndFollowingPost.map((post) => (
+              <PostCard key={post.id} {...post} />
+            ))
+          ) : (
+            <div className="text-center mt-8">
+              <h1 className="font-semibold text-3xl">
+                Follow some people to get started
+              </h1>
+              <span className="font-semibold mt-4 text-6xl material-symbols-outlined">
+                arrow_right_alt
+              </span>
+              <p className="text-lg">or</p>
+              <div className="mt-2">
+                <Link className="text-lg" to="/explore">
+                  Explore
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
         <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3">
           {users.map((user) => (
