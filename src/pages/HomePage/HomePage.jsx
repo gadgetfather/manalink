@@ -42,7 +42,7 @@ export function HomePage() {
       <Navbar />
       <ToastContainer />
       {editPostModal && <EditPostModal />}
-      <div className="min-h-screen grid grid-cols-1   lg:grid-layout">
+      <div className="min-h-[calc(100vh_-_88px)] grid grid-cols-1   lg:grid-layout">
         <Sidebar />
         <div>
           {userAndFollowingPost.length > 0 ? (
