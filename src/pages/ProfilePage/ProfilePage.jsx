@@ -18,16 +18,19 @@ import {
 } from "../../redux/features/user/userThunk";
 import { getPosts } from "../../redux/features/post/postThunk";
 import { openEditProfileModal } from "../../redux/features/modal/modalSlice";
-
+import { editProfile } from "../../redux/features/user/userThunk";
+import { toastError } from "../../components/Toast/Toast";
 export function ProfilePage() {
   const { profile } = useParams();
   const { posts } = useSelector((state) => state.post);
   const {
-    user: { username: currentUser, following },
+    user: { username: currentUser, following, profileImg: imgs },
   } = useSelector((state) => state.auth);
-  const { editProfile } = useSelector((state) => state.modal);
+  const { editProfile: editProfileModal } = useSelector((state) => state.modal);
   const { visitingUser } = useSelector((state) => state.user);
-  const { username, _id, bio } = visitingUser;
+  const user = useSelector((state) => state.auth.user);
+
+  const { username, _id, bio, profileImg } = visitingUser;
   const [showHover, setShowHover] = useState(false);
   const userPosts = posts.filter((post) => post.username === profile).reverse();
   const dispatch = useDispatch();
@@ -46,25 +49,57 @@ export function ProfilePage() {
   const handleEditProfileModal = () => {
     dispatch(openEditProfileModal(bio));
   };
+  // Cloudinary
+  const imageHandler = async (e) => {
+    // console.log(e);
+    try {
+      const data = new FormData();
+      data.append("file", e.target.files[0]);
+      data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
+      data.append(
+        "upload_preset",
+        process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET ?? ""
+      );
 
+      fetch(process.env.REACT_APP_CLOUDINARY_API_URL ?? "", {
+        method: "post",
+        mode: "cors",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const obj = {
+            ...visitingUser,
+            profileImg: data.url,
+          };
+
+          dispatch(editProfile(obj));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col ">
       <Navbar />
       <ToastContainer />
-      {editProfile && <EditProfileModal />}
-      <div className="min-h-screen grid grid-cols-1   lg:grid-layout ">
+      {editProfileModal && <EditProfileModal />}
+      <div className="min-h-[calc(100vh_-_88px)] grid grid-cols-1   lg:grid-layout ">
         <Sidebar />
         <div className="border-r">
           <div className="border-b pb-2 w-full px-2 flex flex-col ">
-            <div className="flex items-center gap-2 pb-2">
+            <div className="flex items-center gap-2 pb-2 pt-4">
               <div
                 onMouseEnter={() => setShowHover(true)}
                 onMouseLeave={() => setShowHover(false)}
                 className="w-20 h-20 relative"
               >
                 <img
-                  className=" rounded-full object-center"
-                  src="https://picsum.photos/200"
+                  className="w-full h-full rounded-full object-cover"
+                  src={profileImg}
                   alt=""
                 />
                 {profile === currentUser ? (
@@ -78,7 +113,12 @@ export function ProfilePage() {
                         photo_camera
                       </span>
                     </label>
-                    <input id="image" className="z-50 hidden" type="file" />
+                    <input
+                      onChange={imageHandler}
+                      id="image"
+                      className="z-50 hidden"
+                      type="file"
+                    />
                   </div>
                 ) : (
                   ""
