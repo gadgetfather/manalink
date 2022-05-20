@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { openModal } from "../../redux/features/modal/modalSlice";
 export function MobileMenu() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const handleOpenModel = () => {
     dispatch(openModal());
   };
@@ -44,7 +45,7 @@ export function MobileMenu() {
         <span className="material-symbols-outlined">explore</span>
       </NavLink>
       <NavLink
-        to={"/profile"}
+        to={`/${user.username}`}
         className={({ isActive }) =>
           isActive
             ? " cursor-pointer bg-red-400 p-1 rounded-full flex items-center  "
