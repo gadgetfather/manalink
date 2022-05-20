@@ -6,7 +6,6 @@ import {
   addToBookmarks,
   deletePost,
   dislikePost,
-  getPosts,
   likePost,
   removeFromBookmarks,
 } from "../../redux/features/post/postThunk";
