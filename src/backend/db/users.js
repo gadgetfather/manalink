@@ -24,6 +24,6 @@ export const users = [
     password: "123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bio: "lorem2  ",
+    bio: "lorem2",
   },
 ];
