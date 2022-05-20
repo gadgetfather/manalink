@@ -30,7 +30,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="h-12 bg-red-400 p-2 flex justify-between sticky top-0 z-40">
+    <nav className="h-12 bg-primary-orange p-2 flex justify-between sticky top-0 z-40 rounded-b-lg">
       <div>
         <Link className="text-lg font-semibold" to={"/home"}>
           Manalink
