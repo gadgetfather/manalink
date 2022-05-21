@@ -57,9 +57,12 @@ export function HomePage() {
               <span className="font-semibold mt-4 text-6xl material-symbols-outlined">
                 arrow_right_alt
               </span>
-              <p className="text-lg">or</p>
-              <div className="mt-2">
-                <Link className="text-lg" to="/explore">
+              <p className="text-2xl">or</p>
+              <div className="mt-4">
+                <Link
+                  className="text-lg bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800"
+                  to="/explore"
+                >
                   Explore
                 </Link>
               </div>
