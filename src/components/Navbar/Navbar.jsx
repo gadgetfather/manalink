@@ -44,17 +44,7 @@ export function Navbar() {
     }
   };
   useEffect(() => {
-    const root = document.getElementById("root");
-
-    if (theme === "light") {
-      setTheme("dark");
-      root.classList.add("dark");
-      localStorage.setItem("manalinkTheme", theme);
-    } else if (theme === "dark") {
-      setTheme("light");
-      root.classList.remove("dark");
-      localStorage.setItem("manalinkTheme", theme);
-    }
+    handleChangeTheme();
   }, []);
   return (
     <nav className="h-12 bg-primary-orange-600 p-2 flex justify-between sticky top-0 z-40 rounded-b-lg">
