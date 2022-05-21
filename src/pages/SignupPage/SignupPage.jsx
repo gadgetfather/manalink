@@ -41,7 +41,7 @@ export function SignupPage() {
   return (
     <div className="w-full min-h-screen bg-white flex justify-center items-center font-body tint-image">
       <ToastContainer />
-      <div className="bg-gray-300 p-4 rounded-md lg:w-80">
+      <div className="bg-gray-500 p-4 rounded-md lg:w-80">
         <h1 className="mb-3 font-body font-bold text-2xl font">
           Create an account
         </h1>
@@ -77,12 +77,15 @@ export function SignupPage() {
             type="password"
             value={formData.confirm_password}
           />
-          <button className="rounded-md bg-slate-800 text-blue-50 mt-2 p-2  ">
+          <button className=" bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800 ">
             Create
           </button>
           <span className="text-sm self-center mt-2">
             Already have account?{" "}
-            <Link to="/" className="text-blue-600 underline cursor-pointer">
+            <Link
+              to="/"
+              className="text-primary-orange-600 underline cursor-pointer"
+            >
               {" "}
               login
             </Link>

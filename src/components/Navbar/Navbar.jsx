@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import { toastError } from "../Toast/Toast";
 export function Navbar() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.auth.user);
 
   const handleLogout = () => {
     setTimeout(() => dispatch(userLogout()), 2000);
@@ -16,6 +17,7 @@ export function Navbar() {
   };
   const [filteredData, setFilteredData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [theme, setTheme] = useState(localStorage.getItem("manalinkTheme"));
   const handleFilter = (e, data) => {
     let text = e.target.value.toLowerCase().trim();
     let textLength = text.length;
@@ -28,9 +30,24 @@ export function Navbar() {
         : setFilteredData([{ id: 0, username: "Not Found" }]);
     } else setFilteredData([]);
   };
+  const handleChangeTheme = () => {
+    const root = document.getElementById("root");
 
+    if (theme === "light") {
+      setTheme("dark");
+      root.classList.add("dark");
+      localStorage.setItem("manalinkTheme", theme);
+    } else if (theme === "dark") {
+      setTheme("light");
+      root.classList.remove("dark");
+      localStorage.setItem("manalinkTheme", theme);
+    }
+  };
+  useEffect(() => {
+    handleChangeTheme();
+  }, []);
   return (
-    <nav className="h-12 bg-red-400 p-2 flex justify-between sticky top-0 z-40">
+    <nav className="h-12 bg-primary-orange-600 p-2 flex justify-between sticky top-0 z-40 rounded-b-lg">
       <div>
         <Link className="text-lg font-semibold" to={"/home"}>
           Manalink
@@ -78,10 +95,16 @@ export function Navbar() {
           )}
         </div>
         <img
-          className="w-8 h-8 rounded-full object-center"
-          src="https://picsum.photos/200"
+          className="w-8 h-8 rounded-full object-cover"
+          src={user.profileImg}
           alt=""
         />
+        <span
+          onClick={handleChangeTheme}
+          className="material-symbols-outlined cursor-pointer"
+        >
+          dark_mode
+        </span>
         <span
           onClick={handleLogout}
           className="material-symbols-outlined cursor-pointer"

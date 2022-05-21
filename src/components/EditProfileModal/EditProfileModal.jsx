@@ -6,13 +6,15 @@ import { editProfile } from "../../redux/features/user/userThunk";
 export function EditProfileModal() {
   const dispatch = useDispatch();
   const { editProfileText } = useSelector((state) => state.modal);
+  const { visitingUser } = useSelector((state) => state.user);
+
   console.log(editProfileText);
   const [text, setText] = useState(editProfileText);
   const handlecloseEditProfileModal = () => {
     dispatch(closeEditProfileModal());
   };
   const submitEdit = () => {
-    dispatch(editProfile(text));
+    dispatch(editProfile({ ...visitingUser, bio: text }));
     dispatch(closeEditProfileModal());
   };
   return (

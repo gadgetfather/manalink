@@ -25,7 +25,7 @@ export function CommentForm() {
       </div>
       <button
         onClick={() => handlePostComment(formData)}
-        className="self-end bg-red-500 px-4 py-2 rounded-md font-medium"
+        className="self-end bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800"
       >
         Comment
       </button>

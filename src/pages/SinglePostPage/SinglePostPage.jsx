@@ -43,7 +43,7 @@ export function SinglePostPage() {
             <Comment key={comment._id} {...comment} />
           ))}
         </div>
-        <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3"></div>
+        <div className="hidden lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-l  pb-3"></div>
       </div>
       <MobileMenu />
     </div>

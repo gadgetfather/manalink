@@ -19,8 +19,8 @@ export function Sidebar() {
           to={"/home"}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 text-white ml-4 w-[60%] rounded-md py-1 pl-5 dark:text-black dark:bg-primary-orange-400"
+              : "flex items-center cursor-pointer   w-[60%]  py-1 pl-5 dark:text-primary-orange-400 "
           }
         >
           <span className="material-symbols-outlined">home</span>
@@ -30,8 +30,8 @@ export function Sidebar() {
           to={"/explore"}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 w-[60%] text-white ml-4 rounded-md py-1 pl-5 dark:text-black dark:bg-primary-orange-400"
+              : "flex items-center cursor-pointer dark:text-primary-orange-400  w-[60%]  py-1 pl-5"
           }
         >
           <span className="material-symbols-outlined">explore</span>
@@ -41,8 +41,8 @@ export function Sidebar() {
           to={"/bookmarks"}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 w-[60%] text-white ml-4 rounded-md py-1 pl-5 dark:text-black dark:bg-primary-orange-400"
+              : "flex items-center cursor-pointer  w-[60%]  py-1 pl-5 dark:text-primary-orange-400 "
           }
         >
           <span className="material-symbols-outlined">bookmark</span>
@@ -52,8 +52,8 @@ export function Sidebar() {
           to={`/${user.username}`}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 w-[60%] text-white ml-4 rounded-md py-1 pl-5 dark:text-black dark:bg-primary-orange-400"
+              : "flex items-center cursor-pointer  w-[60%]  py-1 pl-5 dark:text-primary-orange-400 "
           }
         >
           <span className="material-symbols-outlined">person</span>
@@ -61,17 +61,17 @@ export function Sidebar() {
         </NavLink>
         <button
           onClick={handleOpenModel}
-          className="bg-red-400 mx-2 rounded-2xl p-1"
+          className="bg-primary-orange-600 font-medium mx-2 rounded-2xl px-4 py-2 hover:bg-primary-orange-700"
         >
           New Post
         </button>
         <div className="flex items-center mt-auto pb-2 gap-2">
           <img
-            className="w-10 h-10 rounded-full"
-            src="https://picsum.photos/200"
+            className="w-10 h-10 rounded-full object-cover"
+            src={user.profileImg}
             alt=""
           />
-          <h2>{user.username}</h2>
+          <h2 className="dark:text-slate-200">{user.username}</h2>
         </div>
       </div>
     </div>

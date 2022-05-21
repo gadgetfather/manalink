@@ -18,6 +18,7 @@ export function Comment(props) {
   const { postId } = useParams();
   const [postData, setPostData] = useState({ postId: postId, commentId: _id });
   const modal = useSelector((state) => state.modal);
+  const { users } = useSelector((state) => state.user);
 
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -34,13 +35,18 @@ export function Comment(props) {
     dispatch(deleteComment(postData));
   };
   return (
-    <div className="border-b p-2">
+    <div className="border-b p-2 dark:text-slate-200">
       <div className="flex items-center gap-2">
-        <img
-          className="w-10 h-10 rounded-full"
-          src="https://picsum.photos/200"
-          alt=""
-        />
+        {users
+          .filter((user) => user.username === username)
+          .map((user) => (
+            <img
+              key={user.id}
+              className="h-10 w-10 rounded-full object-cover"
+              src={user.profileImg}
+              alt=""
+            />
+          ))}
         <h2>{username}</h2>
       </div>
       <div className="pt-2">

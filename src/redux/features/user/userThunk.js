@@ -71,7 +71,7 @@ export const editProfile = createAsyncThunk(
         { userData },
         { headers: { authorization: encodedToken } }
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
