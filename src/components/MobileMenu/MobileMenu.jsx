@@ -9,12 +9,12 @@ export function MobileMenu() {
     dispatch(openModal());
   };
   return (
-    <div className="h-10 bg-yellow-200 sticky w-full bottom-0 flex justify-between items-center px-2 lg:hidden">
+    <div className="h-10 bg-primary-orange-600 sticky w-full bottom-0 flex justify-between items-center px-2 lg:hidden">
       <NavLink
         to="/home"
         className={({ isActive }) =>
           isActive
-            ? " cursor-pointer bg-red-400 p-1 rounded-full flex items-center  "
+            ? " cursor-pointer bg-secondary-color-600 text-white p-1 rounded-full flex items-center  "
             : " cursor-pointer   "
         }
       >
@@ -25,7 +25,7 @@ export function MobileMenu() {
         to={"/bookmarks"}
         className={({ isActive }) =>
           isActive
-            ? " cursor-pointer bg-red-400 p-1 rounded-full flex items-center  "
+            ? " cursor-pointer bg-secondary-color-600 text-white p-1 rounded-full flex items-center  "
             : " cursor-pointer   "
         }
       >
@@ -38,7 +38,7 @@ export function MobileMenu() {
         to={"/explore"}
         className={({ isActive }) =>
           isActive
-            ? " cursor-pointer bg-red-400 p-1 rounded-full flex items-center  "
+            ? " cursor-pointer bg-secondary-color-600 text-white p-1 rounded-full flex items-center  "
             : " cursor-pointer   "
         }
       >
@@ -48,7 +48,7 @@ export function MobileMenu() {
         to={`/${user.username}`}
         className={({ isActive }) =>
           isActive
-            ? " cursor-pointer bg-red-400 p-1 rounded-full flex items-center  "
+            ? " cursor-pointer bg-secondary-color-600 text-white p-1 rounded-full flex items-center  "
             : " cursor-pointer   "
         }
       >
