@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Manalink
 
-## Available Scripts
+</div>
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## 📕 Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [About](#-about)
+- [Features It has](#-features-it-has)
+- [Getting Started](#-getting-started)
+- [Connect with me](#-connect-with-me)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+## 📖 About
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Manalink is an Social Media App created for gamers. Come checkout what pro  Gamers have to say!
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Features It has
+From **Navbar**
+- user can logout
+From **Sidebar**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- navigate to the Explore/Bookmarks/Profile page
+- navigate to the Home page back, click on the  logo
 
-### `yarn eject`
+  - Sign Up by following the link provided on the Log In page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+From **Home**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- click on the Explore to see all the posts made by all the users.
+- click on the Bookmarks to see all the posts you bookmarked.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+From **Explore** Page
 
-## Learn More
+- on this page you can see all the posts made by all the users.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+From **Bookmarks** page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- on this page you can see all the posts you bookmarked
 
-### Code Splitting
+From **Profile** page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- On this page you can see your profile photo/cover photo/bio/username/URL
+- On clicking Edit Profile you can edit your profile photo/bio/URL.
+- You can also see all the post that you made.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🔌 Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- clone the repository on your local machine with the command below in your terminal, and cd into the **StormMedia** folder
 
-### Advanced Configuration
+```
+git clone https://github.com/b0llu/StormMedia.git
+cd manalink
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- install dependencies (if you are using **yarn** then do with that)
 
-### Deployment
+```
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- create a `.env` file at the root level of the directory (at the level of `package.json`) and create a variable like mentioned below
 
-### `yarn build` fails to minify
+```
+REACT_APP_JWT_SECRET = <JWT_SECRET_KEY_OF_YOUR_CHOICE>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- start the server
+
+```
+npm start
+```
+
+---
+
+## 👨‍💻 Connect with me
+
+<a href="https://twitter.com/gadgetfather"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"/></a>
+<a href="https://www.linkedin.com/in/gadgetfather/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
