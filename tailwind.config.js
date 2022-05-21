@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     fontFamily: {
       body: ["Radio Canada", "sans-serif"],
@@ -28,6 +29,7 @@ module.exports = {
           700: "#110C37",
           800: "#00001D",
         },
+        "dark-bg": "#121212",
       },
     },
   },
