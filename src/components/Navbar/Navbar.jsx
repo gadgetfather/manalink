@@ -17,7 +17,9 @@ export function Navbar() {
   };
   const [filteredData, setFilteredData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [theme, setTheme] = useState(localStorage.getItem("manalinkTheme"));
+  const [theme, setTheme] = useState(
+    localStorage.getItem("manalinkTheme") || "light"
+  );
   const handleFilter = (e, data) => {
     let text = e.target.value.toLowerCase().trim();
     let textLength = text.length;
@@ -30,21 +32,35 @@ export function Navbar() {
         : setFilteredData([{ id: 0, username: "Not Found" }]);
     } else setFilteredData([]);
   };
+
   const handleChangeTheme = () => {
     const root = document.getElementById("root");
 
     if (theme === "light") {
       setTheme("dark");
       root.classList.add("dark");
-      localStorage.setItem("manalinkTheme", theme);
+      localStorage.setItem("manalinkTheme", "dark");
     } else if (theme === "dark") {
       setTheme("light");
       root.classList.remove("dark");
+      localStorage.setItem("manalinkTheme", "light");
+    }
+  };
+  const setInitialTheme = () => {
+    const root = document.getElementById("root");
+
+    if (theme === "light") {
       localStorage.setItem("manalinkTheme", theme);
+
+      root.classList.remove("dark");
+    } else {
+      localStorage.setItem("manalinkTheme", theme);
+
+      root.classList.add("dark");
     }
   };
   useEffect(() => {
-    handleChangeTheme();
+    setInitialTheme();
   }, []);
   return (
     <nav className="h-12 bg-primary-orange-600 p-2 flex justify-between sticky top-0 z-40 rounded-b-lg">
@@ -99,12 +115,21 @@ export function Navbar() {
           src={user.profileImg}
           alt=""
         />
-        <span
-          onClick={handleChangeTheme}
-          className="material-symbols-outlined cursor-pointer"
-        >
-          dark_mode
-        </span>
+        {theme === "light" ? (
+          <span
+            onClick={handleChangeTheme}
+            className="material-symbols-outlined cursor-pointer"
+          >
+            light_mode
+          </span>
+        ) : (
+          <span
+            onClick={handleChangeTheme}
+            className="material-symbols-outlined cursor-pointer"
+          >
+            dark_mode
+          </span>
+        )}
         <span
           onClick={handleLogout}
           className="material-symbols-outlined cursor-pointer"
