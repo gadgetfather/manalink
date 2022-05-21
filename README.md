@@ -60,7 +60,7 @@ From **Profile** page
 - clone the repository on your local machine with the command below in your terminal, and cd into the **StormMedia** folder
 
 ```
-git clone https://github.com/b0llu/StormMedia.git
+git clone https://github.com/gadgetfather/manalink.git
 cd manalink
 ```
 
