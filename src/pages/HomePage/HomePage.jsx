@@ -70,6 +70,9 @@ export function HomePage() {
           )}
         </div>
         <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3">
+          <h2 className="text-center font-medium text-2xl">
+            Some amazing people
+          </h2>
           {users.map((user) => (
             <PersonCard key={user.id} {...user} />
           ))}
