@@ -31,7 +31,7 @@ export function LoginPage() {
     <div className="w-full min-h-screen  flex justify-center items-center font-body tint-image">
       <ToastContainer />
 
-      <div className="bg-gray-300 p-4 rounded-md lg:w-80">
+      <div className="bg-gray-500 p-4 rounded-md lg:w-80">
         <h1 className="mb-3 font-body font-bold text-2xl font">
           Log in to Manalink
         </h1>
@@ -58,14 +58,14 @@ export function LoginPage() {
             type="password"
             value={formData.password}
           />
-          <button className="rounded-md bg-slate-800 text-blue-50 mt-2 p-2  ">
+          <button className="bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800 ">
             Login
           </button>
           <span className="text-sm self-center mt-2">
             Join us today
             <Link
               to="/signup"
-              className="text-blue-600 underline cursor-pointer"
+              className="text-primary-orange-600 underline cursor-pointer"
             >
               {" "}
               Sign up

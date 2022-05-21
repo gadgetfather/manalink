@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 function App() {
   const { isOpen } = useSelector((state) => state.modal);
   return (
-    <div>
+    <div className=" dark:bg-dark-bg">
       {isOpen && <PostModal />}
       {}
       <Routes>

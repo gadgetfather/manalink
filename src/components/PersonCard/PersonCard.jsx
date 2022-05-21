@@ -26,13 +26,14 @@ export function PersonCard(props) {
       {username !== user.username ? (
         <div
           onClick={navigateToProfile}
-          className="cursor-pointer flex flex-col p-2 border-b"
+          className="cursor-pointer flex flex-col p-2 border-b dark:text-slate-200"
         >
           <div className="flex items-center gap-2">
             {users
               .filter((user) => user.username === username)
               .map((user) => (
                 <img
+                  key={user.id}
                   className="h-10 w-10 rounded-full object-cover"
                   src={user.profileImg}
                   alt=""

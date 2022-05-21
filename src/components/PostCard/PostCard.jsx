@@ -66,12 +66,13 @@ export function PostCard(props) {
   };
 
   return (
-    <div className=" p-2   flex flex-col border-b    ">
+    <div className=" p-2   flex flex-col border-b  dark:text-slate-200  ">
       <div className="flex items-center gap-2">
         {users
           .filter((user) => user.username === username)
           .map((user) => (
             <img
+              key={user.id}
               className="h-10 w-10 rounded-full object-cover"
               src={user.profileImg}
               alt=""

@@ -52,7 +52,6 @@ export function ProfilePage() {
   };
   // Cloudinary
   const imageHandler = async (e) => {
-    // console.log(e);
     try {
       const data = new FormData();
       data.append("file", e.target.files[0]);
@@ -126,17 +125,25 @@ export function ProfilePage() {
                 )}
               </div>
 
-              <h1 className="font-medium text-lg">{username}</h1>
+              <h1 className="font-medium text-lg dark:text-slate-200">
+                {username}
+              </h1>
             </div>
-            <p>{bio}</p>
+            <p className="dark:text-slate-200">{bio}</p>
             {profile === currentUser ? (
-              <button onClick={handleEditProfileModal} className="ml-auto mr-2">
+              <button
+                onClick={handleEditProfileModal}
+                className="ml-auto mr-2 bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800"
+              >
                 Edit
               </button>
             ) : (
               <>
                 {following.some((user) => user.username === profile) ? (
-                  <button onClick={handleUnfollow} className="ml-auto mr-2">
+                  <button
+                    onClick={handleUnfollow}
+                    className="ml-auto mr-2 bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800"
+                  >
                     following
                   </button>
                 ) : (
@@ -150,7 +157,7 @@ export function ProfilePage() {
           {userPosts.length > 0 ? (
             userPosts.map((post) => <PostCard key={post.id} {...post} />)
           ) : (
-            <h1 className="text-center mt-4 font-medium text-3xl">
+            <h1 className="text-center mt-4 font-medium text-3xl dark:text-slate-200">
               No posts yet...
             </h1>
           )}

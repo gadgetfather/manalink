@@ -17,7 +17,7 @@ export function BookmarkPage() {
 
       <div className="min-h-[calc(100vh_-_88px)] grid grid-cols-1   lg:grid-layout">
         <Sidebar />
-        <div className="border-r pb-4">
+        <div className="border-r pb-4 dark:text-slate-200">
           <h1 className="text-3xl mb-2 text-center font-semibold">
             Saved Posts
           </h1>

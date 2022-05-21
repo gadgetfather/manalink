@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -37,21 +37,27 @@ export function HomePage() {
     dispatch(getPosts());
     dispatch(getAllUsers());
   }, []);
+
   return (
-    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col ">
+    <div className="lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto flex flex-col">
       <Navbar />
       <ToastContainer />
       {editPostModal && <EditPostModal />}
       <div className="min-h-[calc(100vh_-_88px)] grid grid-cols-1   lg:grid-layout">
         <Sidebar />
         <div>
+          <div className="border-b h-16 pl-2 flex items-center ">
+            <h1 className="text-xl font-semibold dark:text-white">
+              Welcome Back...
+            </h1>
+          </div>
           {userAndFollowingPost.length > 0 ? (
             userAndFollowingPost.map((post) => (
               <PostCard key={post.id} {...post} />
             ))
           ) : (
-            <div className="text-center mt-8">
-              <h1 className="font-semibold text-3xl">
+            <div className="text-center mt-8 dark:text-white">
+              <h1 className="font-semibold text-3xl ">
                 Follow some people to get started
               </h1>
               <span className="font-semibold mt-4 text-6xl material-symbols-outlined">
@@ -69,8 +75,8 @@ export function HomePage() {
             </div>
           )}
         </div>
-        <div className="hidden border lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r pb-3">
-          <h2 className="text-center font-medium text-2xl">
+        <div className="hidden  lg:flex flex-col  sticky top-[48px] h-[calc(100vh_-_48px)] gap-4 pt-2 border-r border-l pb-3">
+          <h2 className="text-center font-medium text-2xl dark:text-slate-200">
             Some amazing people
           </h2>
           {users.map((user) => (
