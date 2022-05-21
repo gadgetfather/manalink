@@ -52,7 +52,11 @@ From **Profile** page
 - On clicking Edit Profile you can edit your profile photo/bio/URL.
 - You can also see all the post that you made.
 
-
+From **Post** page
+- user can comment on posts
+- Like and dislike comments
+- Edit his/her own comments
+- Delete his/her own comments
 ---
 
 ## 🔌 Getting Started
