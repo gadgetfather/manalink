@@ -71,7 +71,7 @@ export function Sidebar() {
             src={user.profileImg}
             alt=""
           />
-          <h2>{user.username}</h2>
+          <h2 className="dark:text-slate-200">{user.username}</h2>
         </div>
       </div>
     </div>
