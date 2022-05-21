@@ -77,7 +77,10 @@ export function PostCard(props) {
               alt=""
             />
           ))}
-        <h2 className="cursor-pointer" onClick={handleNavigateToProfile}>
+        <h2
+          className="cursor-pointer text-lg font-medium"
+          onClick={handleNavigateToProfile}
+        >
           {username}
         </h2>
         {username === currentUser ? (
@@ -105,7 +108,7 @@ export function PostCard(props) {
         onClick={() => handleNavigateToSinglePost(_id)}
         className="text-base cursor-pointer"
       >
-        <p className="whitespace-pre-line py-2">{content}</p>
+        <p className="whitespace-pre-line py-2 font-normal ">{content}</p>
       </div>
       <div className="pt-2 flex justify-between">
         <div className="flex items-center justify-center gap-2">
