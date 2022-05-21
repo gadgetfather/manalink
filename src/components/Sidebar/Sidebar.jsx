@@ -19,8 +19,8 @@ export function Sidebar() {
           to={"/home"}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 text-white ml-4 w-[60%] rounded-md py-1 pl-5"
+              : "flex items-center cursor-pointer   w-[60%]  py-1 pl-5"
           }
         >
           <span className="material-symbols-outlined">home</span>
@@ -30,8 +30,8 @@ export function Sidebar() {
           to={"/explore"}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 w-[60%] text-white ml-4 rounded-md py-1 pl-5"
+              : "flex items-center cursor-pointer  w-[60%]  py-1 pl-5"
           }
         >
           <span className="material-symbols-outlined">explore</span>
@@ -41,8 +41,8 @@ export function Sidebar() {
           to={"/bookmarks"}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 w-[60%] text-white ml-4 rounded-md py-1 pl-5"
+              : "flex items-center cursor-pointer  w-[60%]  py-1 pl-5"
           }
         >
           <span className="material-symbols-outlined">bookmark</span>
@@ -52,8 +52,8 @@ export function Sidebar() {
           to={`/${user.username}`}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center cursor-pointer bg-yellow-300 w-[75%] rounded-md py-1 pl-5"
-              : "flex items-center cursor-pointer  w-[75%]  py-1 pl-5"
+              ? "flex items-center cursor-pointer bg-secondary-color-600 w-[60%] text-white ml-4 rounded-md py-1 pl-5"
+              : "flex items-center cursor-pointer  w-[60%]  py-1 pl-5"
           }
         >
           <span className="material-symbols-outlined">person</span>
@@ -61,7 +61,7 @@ export function Sidebar() {
         </NavLink>
         <button
           onClick={handleOpenModel}
-          className="bg-primary-orange-600 font-medium mx-2 rounded-2xl p-1 hover:bg-primary-orange-700"
+          className="bg-primary-orange-600 font-medium mx-2 rounded-2xl px-4 py-2 hover:bg-primary-orange-700"
         >
           New Post
         </button>
