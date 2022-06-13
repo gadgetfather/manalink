@@ -30,4 +30,28 @@ export const users = [
     profileImg:
       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
   },
+  {
+    _id: uuid(),
+    firstName: "Jack",
+    lastName: "Balika",
+    username: "Jack",
+    password: "123",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    bio: "lorem222 at jack",
+    profileImg:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+  },
+  {
+    _id: uuid(),
+    firstName: "TestUser3",
+    lastName: "Balika",
+    username: "TestUser3",
+    password: "123",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    bio: "lorem222 at testUser3",
+    profileImg:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+  },
 ];
