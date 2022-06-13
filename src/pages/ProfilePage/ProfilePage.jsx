@@ -128,8 +128,20 @@ export function ProfilePage() {
               <h1 className="font-medium text-lg dark:text-slate-200">
                 {username}
               </h1>
+              <div className="flex gap-4 ml-auto mr-10">
+                <div className="flex-col text-center">
+                  <p>{visitingUser.followers.length || 0}</p>
+                  <p>Followers</p>
+                </div>
+                <div className="flex-col text-center">
+                  <p>{visitingUser.following.length || 0}</p>
+                  <p>Following</p>
+                </div>
+              </div>
             </div>
+
             <p className="dark:text-slate-200">{bio}</p>
+
             {profile === currentUser ? (
               <button
                 onClick={handleEditProfileModal}
@@ -147,7 +159,10 @@ export function ProfilePage() {
                     following
                   </button>
                 ) : (
-                  <button onClick={handleFollow} className="ml-auto mr-2">
+                  <button
+                    onClick={handleFollow}
+                    className="ml-auto mr-2 bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800"
+                  >
                     follow
                   </button>
                 )}
