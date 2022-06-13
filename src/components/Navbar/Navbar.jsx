@@ -98,7 +98,10 @@ export function Navbar() {
                       className=" "
                       to={`/${user.username}`}
                     >
-                      <p className="p-1 w-full border-b hover:bg-slate-500">
+                      <p
+                        key={uuid()}
+                        className="p-1 w-full border-b hover:bg-slate-500"
+                      >
                         {user.username}
                       </p>
                     </Link>
