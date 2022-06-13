@@ -4,7 +4,10 @@ import { editProfile, getAllUsers, getSingleUser } from "./userThunk";
 const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   users: [],
-  visitingUser: {},
+  visitingUser: {
+    followers: [],
+    following: [],
+  },
 };
 const userSlice = createSlice({
   name: "user",

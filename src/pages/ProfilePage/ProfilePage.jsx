@@ -130,11 +130,11 @@ export function ProfilePage() {
               </h1>
               <div className="flex gap-4 ml-auto mr-10">
                 <div className="flex-col text-center">
-                  <p>{visitingUser.followers.length || 0}</p>
+                  <p>{visitingUser.followers.length}</p>
                   <p>Followers</p>
                 </div>
                 <div className="flex-col text-center">
-                  <p>{visitingUser.following.length || 0}</p>
+                  <p>{visitingUser.following.length}</p>
                   <p>Following</p>
                 </div>
               </div>
