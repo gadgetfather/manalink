@@ -39,58 +39,63 @@ export function SignupPage() {
     }
   }, [token, navigate, location]);
   return (
-    <div className="w-full min-h-screen bg-white flex justify-center items-center font-body tint-image">
+    <div className="w-full min-h-screen bg-white flex justify-center items-center font-body ">
       <ToastContainer />
-      <div className="bg-gray-500 p-4 rounded-md lg:w-80">
-        <h1 className="mb-3 font-body font-bold text-2xl font">
-          Create an account
-        </h1>
-        <form
-          onSubmit={(e) => handleSignup(e)}
-          className=" p-4 flex flex-col gap-2 rounded-lg "
-        >
-          <input
-            onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
-            }
-            className="border-solid border-[1px] border-gray-400 rounded-md p-2"
-            placeholder="Enter username"
-            type="text"
-            value={formData.username}
-          />
+      <div className="hidden min-h-screen w-[50%] tint-image lg:block"></div>
+      <div className=" w-[100%] min-h-screen flex items-center justify-center flex-col bg-[#f5f5f5] lg:w-[50%]">
+        <h1 className="text-4xl font-bold ">Become the part of the stage</h1>
+        <p className="mb-4">Join Manalink Today </p>
+        <div className="shadow-xl p-4 rounded-md lg:w-80">
+          <h1 className="mb-3 font-body font-bold text-2xl font text-center">
+            Create an account
+          </h1>
+          <form
+            onSubmit={(e) => handleSignup(e)}
+            className=" p-4 flex flex-col gap-2 rounded-lg "
+          >
+            <input
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })
+              }
+              className="border-solid border-[1px] border-gray-400 rounded-md p-2"
+              placeholder="Enter username"
+              type="text"
+              value={formData.username}
+            />
 
-          <input
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-            className="border-solid border-[1px] border-gray-400 rounded-md p-2"
-            placeholder="Password"
-            type="password"
-            value={formData.password}
-          />
-          <input
-            onChange={(e) =>
-              setFormData({ ...formData, confirm_password: e.target.value })
-            }
-            className="border-solid border-[1px] border-gray-400 rounded-md p-2"
-            placeholder="Confirm Password"
-            type="password"
-            value={formData.confirm_password}
-          />
-          <button className=" bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800 ">
-            Create
-          </button>
-          <span className="text-sm self-center mt-2">
-            Already have account?{" "}
-            <Link
-              to="/"
-              className="text-primary-orange-600 underline cursor-pointer"
-            >
-              {" "}
-              login
-            </Link>
-          </span>
-        </form>
+            <input
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              className="border-solid border-[1px] border-gray-400 rounded-md p-2"
+              placeholder="Password"
+              type="password"
+              value={formData.password}
+            />
+            <input
+              onChange={(e) =>
+                setFormData({ ...formData, confirm_password: e.target.value })
+              }
+              className="border-solid border-[1px] border-gray-400 rounded-md p-2"
+              placeholder="Confirm Password"
+              type="password"
+              value={formData.confirm_password}
+            />
+            <button className=" bg-primary-orange-600 px-4 py-2 rounded-md font-medium hover:bg-primary-orange-800 ">
+              Create
+            </button>
+            <span className="text-sm self-center mt-2">
+              Already have account?{" "}
+              <Link
+                to="/"
+                className="text-primary-orange-600 underline cursor-pointer"
+              >
+                {" "}
+                login
+              </Link>
+            </span>
+          </form>
+        </div>
       </div>
     </div>
   );
