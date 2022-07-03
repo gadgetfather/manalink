@@ -128,7 +128,7 @@ export function ProfilePage() {
               <h1 className="font-medium text-lg dark:text-slate-200">
                 {username}
               </h1>
-              <div className="flex gap-4 ml-auto mr-10">
+              <div className="flex gap-4 ml-auto ">
                 <div className="flex-col text-center">
                   <p>{visitingUser.followers.length}</p>
                   <p>Followers</p>
